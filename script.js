@@ -1,13 +1,26 @@
 const screen = document.querySelector(".screen");
 const btn = document.querySelector(".btn");
+const muteBtn = document.querySelector(".mute");
+
+let isMute = false;
 let stream = null;
+
+muteBtn.addEventListener('click',()=>{
+  isMute = !isMute;
+  console.log(isMute)
+  //we can create a repeating function called startVideo()
+  //if setting has been changed then we can pass startVideo() function again here
+})
+
 btn.addEventListener("click", () => {
-  console.log(`button clicked`);
+  console.log(`camera on`);
+
   const mediaDevices = window.navigator.mediaDevices;
+
   mediaDevices
     .getUserMedia({
-      video: true,
-      audio: false,
+      video: { width:720, height: 720 },
+      audio: isMute,
     })
     .then((newStream) => {
       stream = newStream;
@@ -21,6 +34,7 @@ btn.addEventListener("click", () => {
       console.log(err);
     });
 });
+
 const stopbtn = document.querySelector(".stop");
 stopbtn.addEventListener("click", () => {
   console.log(`stopped`)
@@ -29,3 +43,6 @@ stopbtn.addEventListener("click", () => {
   });
   screen.srcObject = null;
 });
+
+
+

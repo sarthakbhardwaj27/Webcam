@@ -11,7 +11,9 @@ body{
     justify-content: center;
 }
 .screen{
+    margin-top: 150px;
     height: 400px;
-    width: 500px;
-    border-radius: 15%;
+    width: 400px;
+    border-radius: 50%;
+    transform: scaleX(-1);
 }
